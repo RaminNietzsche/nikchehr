@@ -1031,6 +1031,31 @@ var PDFView = {
   open: function pdfViewOpen(url, scale, password,
                              pdfDataRangeTransport, args) {
 
+   var uploader = document.getElementById('openFile');
+
+   upclick(
+     {
+      element: uploader,
+      action: '/upload/', 
+      onstart:
+        function(filename)
+        {
+          alert('Start upload: '+filename);
+        },
+      oncomplete:
+        function(response_data) 
+        {
+          if(response_data != "err")
+          {
+              socket.emit('my event', {data: "newFile", value: response_data});
+          }
+          else
+          {
+              alert("ERROR IN UPLOAD!");
+          }
+        }
+     });
+
     var parameters = {password: password};
     if (typeof url === 'string') { // URL
       this.setTitleUsingUrl(url);

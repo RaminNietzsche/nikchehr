@@ -23,6 +23,8 @@ limitations under the License.
 <!--#if FIREFOX || MOZCENTRAL-->
 <!--#include viewer-snippet-firefox-extension.html-->
 <!--#endif-->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/upclick-min.js') }}"></script>
+
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
     <script language="javascript">var socket = io.connect('http://' + document.domain + ':' + location.port + '/nikchehr');</script>
@@ -96,6 +98,11 @@ limitations under the License.
           else if(msg.data == "zoomOut")
           {
               PDFView.zoomOut();
+          }
+          else if(msg.data == "newFile")
+          {
+              alert("upload/" + msg.value);
+              PDFView.pdfViewOpen("upload/" + msg.value);
           }
          });
 
@@ -196,7 +203,7 @@ limitations under the License.
                 <span id="numPages" class="toolbarLabel"></span>
               </div>
               <div id="toolbarViewerRight">
-                <input id="fileInput" class="fileInput" type="file" oncontextmenu="return false;" style="visibility: hidden; position: fixed; right: 0; top: 0" />
+                <input id="fileInput" class="fileInput" type="button" oncontextmenu="return false;" style="visibility: hidden; position: fixed; right: 0; top: 0" />
 
                 <button id="presentationMode" class="toolbarButton presentationMode hiddenSmallView" title="Switch to Presentation Mode" tabindex="12" data-l10n-id="presentation_mode">
                   <span data-l10n-id="presentation_mode_label">Presentation Mode</span>
