@@ -1021,7 +1021,7 @@ var PDFView = {
   },
 
   setTitle: function pdfViewSetTitle(title) {
-    document.title = title;
+    document.title = "کتاب‌حوان نیکچهر : " + title;
 //#if B2G
 //  document.getElementById('activityTitle').textContent = title;
 //#endif
@@ -3304,12 +3304,12 @@ document.addEventListener('DOMContentLoaded', function webViewerLoad(evt) {
 
   document.getElementById('firstPage').addEventListener('click',
     function() {
-      PDFView.page = 1;
+      socket.emit('my event', {data: "pageNumber", value:"1"});
     });
 
   document.getElementById('lastPage').addEventListener('click',
     function() {
-      PDFView.page = PDFView.pdfDocument.numPages;
+      socket.emit('my event', {data: "pageNumber", value:PDFView.pdfDocument.numPages});
     });
 
   document.getElementById('pageRotateCcw').addEventListener('click',
@@ -3675,16 +3675,16 @@ window.addEventListener('keydown', function keydown(evt) {
         break;
 
       case 36: // home
-        if (PDFView.isPresentationMode) {
-          PDFView.page = 1;
+        // if (PDFView.isPresentationMode) {
+          socket.emit('my event', {data: "pageNumber", value:"1"});
           handled = true;
-        }
+        // }
         break;
       case 35: // end
-        if (PDFView.isPresentationMode) {
-          PDFView.page = PDFView.pdfDocument.numPages;
-          handled = true;
-        }
+        // if (PDFView.isPresentationMode) {
+          socket.emit('my event', {data: "pageNumber", value:PDFView.pdfDocument.numPages});
+        //   handled = true;
+        // }
         break;
 
       case 82: // 'r'

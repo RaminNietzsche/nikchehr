@@ -77,16 +77,17 @@ limitations under the License.
       <script type="text/javascript" charset="utf-8">
       $(document).ready(function(){
         socket.on('my response', function(msg) {
-          if(msg.data == "next") {
-            PDFView.page++;
+          if(msg.data == "next") 
+          {
+              PDFView.page++;
           }
           else if(msg.data == "previous")
           {
-            PDFView.page--;
+              PDFView.page--;
           }
           else if(msg.data == "pageNumber")
           {
-            PDFView.page = msg.value;
+              PDFView.page = msg.value;
           }
          });
 
@@ -109,7 +110,6 @@ limitations under the License.
   </head>
 
   <body tabindex="1">
-
 
     <div id="outerContainer" class="loadingInProgress">
 
