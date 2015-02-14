@@ -19,11 +19,6 @@ def back():
 def take_event(message):
     emit('my response', {'data': message['data'], 'value': message['value']}, broadcast=True)
 
-@app.route('/uploadajax/', methods = ['POST'])
-def upldfile():
-    if request.method == 'POST':
-        file_val = request.files['file']
-        print ">>>>>> SALAM <<<<<<<"
 
 def configure_template_tag(app):
     from utils.template_tag import init_filters

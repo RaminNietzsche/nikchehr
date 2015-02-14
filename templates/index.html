@@ -89,6 +89,14 @@ limitations under the License.
           {
               PDFView.page = msg.value;
           }
+          else if(msg.data == "zoomIn")
+          {
+              PDFView.zoomIn();
+          }
+          else if(msg.data == "zoomOut")
+          {
+              PDFView.zoomOut();
+          }
          });
 
         $('#next').click(function(event) {
@@ -104,7 +112,18 @@ limitations under the License.
         $('#pageNumber').change(function(event) {
             socket.emit('my event', {data: "pageNumber", value:$("#pageNumber" ).val()});
             return false;
-         });        
+         });
+
+        $('#zoomIn').click(function(event) {
+            socket.emit('my event', {data: "zoomIn", value:"0"});
+            return false;
+         });
+
+        $('#zoomOut').click(function(event) {
+            socket.emit('my event', {data: "zoomOut", value:"0"});
+            return false;
+         });
+
       });
     </script>    
   </head>

@@ -1030,6 +1030,7 @@ var PDFView = {
   // TODO(mack): This function signature should really be pdfViewOpen(url, args)
   open: function pdfViewOpen(url, scale, password,
                              pdfDataRangeTransport, args) {
+
     var parameters = {password: password};
     if (typeof url === 'string') { // URL
       this.setTitleUsingUrl(url);
@@ -3252,16 +3253,6 @@ document.addEventListener('DOMContentLoaded', function webViewerLoad(evt) {
       PDFView.switchSidebarView('outline');
     });
 
-  document.getElementById('zoomIn').addEventListener('click',
-    function() {
-      PDFView.zoomIn();
-    });
-
-  document.getElementById('zoomOut').addEventListener('click',
-    function() {
-      PDFView.zoomOut();
-    });
-
   document.getElementById('presentationMode').addEventListener('click',
     function() {
       PDFView.presentationMode();
@@ -3286,21 +3277,6 @@ document.addEventListener('DOMContentLoaded', function webViewerLoad(evt) {
     function() {
       this.select();
     });
-
-  // document.getElementById('pageNumber').addEventListener('change',
-  //   function() {
-  //     // Handle the user inputting a floating point number.
-  //     PDFView.page = (this.value | 0);
-
-  //     if (this.value !== (this.value | 0).toString()) {
-  //       this.value = PDFView.page;
-  //     }
-  //   });
-
-  /*document.getElementById('scaleSelect').addEventListener('change',
-    function() {
-      PDFView.parseScale(this.value);
-    });*/
 
   document.getElementById('firstPage').addEventListener('click',
     function() {
@@ -3578,13 +3554,13 @@ window.addEventListener('keydown', function keydown(evt) {
       case 107: // FF '+' and '='
       case 187: // Chrome '+'
       case 171: // FF with German keyboard
-        PDFView.zoomIn();
+        socket.emit('my event', {data: "zoomIn", value:"0"});
         handled = true;
         break;
       case 173: // FF/Mac '-'
       case 109: // FF '-'
       case 189: // Chrome '-'
-        PDFView.zoomOut();
+        socket.emit('my event', {data: "zoomOut", value:"0"});
         handled = true;
         break;
       case 48: // '0'
