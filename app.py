@@ -27,7 +27,7 @@ def upload_file():
         file = request.files['Filedata']
         if file:
             filename = secure_filename(file.filename)
-            file.save("upload/" + filename)
+            file.save("static/upload/" + filename)
             return filename
     return "err"
 
