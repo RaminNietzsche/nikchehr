@@ -37,4 +37,4 @@ def configure_template_tag(app):
 
 if __name__ == '__main__':
     configure_template_tag(app)
-    socketio.run(app, host="0.0.0.0")
+    socketio.run(app, host="0.0.0.0", port=3001)
